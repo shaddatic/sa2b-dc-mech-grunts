@@ -13,32 +13,31 @@
 static bool TWalkSw;
 static bool EWalkSw;
 
-void __cdecl
-SE_Rand(int32_t se, NJS_VECTOR* pPos, TASK* pTask, int8_t pri, int8_t Volume)
+static bool Random;
+
+static void __cdecl
+SE_Switch(int32_t se, NJS_VECTOR* pPos, TASK* pTask, int8_t pri, int8_t Volume)
 {
-    if (se == 0x3000) // Tails
+    if ((se == 0x3000 && TWalkSw) || (se == 0x300A && EWalkSw))
     {
-        if (!TWalkSw)
-            goto NO_INC;
+        if (Random)
+        {
+            if (njRandom() < 0.5f)
+                ++se;
+        }
+        else
+        {
+            if (njScalor(&pTask->mwp->spd) > 10.0f)
+                ++se;
+        }
     }
-    else if (se == 0x300A)
-    {
-        if (!EWalkSw)
-            goto NO_INC;
-    }
-    else
-        goto NO_INC;
 
-    if (njRandom() < 0.5f)
-        ++se;
-
-NO_INC:
     SE_CallV2(se, pTask, pPos,  pri, Volume);
 }
 
 __declspec(naked)
 static void
-__SE_Rand()
+__SE_Switch()
 {
     __asm
     {
@@ -48,7 +47,7 @@ __SE_Rand()
         push esi
         push edi
 
-        call SE_Rand
+        call SE_Switch
 
         pop edi
         pop esi
@@ -56,6 +55,7 @@ __SE_Rand()
         retn
     }
 }
+
 
 EXPORT_DLL
 void __cdecl
@@ -66,8 +66,10 @@ Init(const char* path, const HelperFunctions* pHelpFuncs)
     TWalkSw = ConfigGetInt(p_config, "main", "twalk_sw", 1);
     EWalkSw = ConfigGetInt(p_config, "main", "ewalk_sw", 1);
 
-    WriteCall(0x007492DA, __SE_Rand); // SoundSwitch 1
-    WriteCall(0x007493EE, __SE_Rand); // SoundSwitch 2
+    Random = ConfigGetInt(p_config, "main", "random", 0);
+
+    WriteCall(0x007492DA, __SE_Switch);
+    WriteCall(0x007493EE, __SE_Switch);
 
     ConfigClose(p_config);
 }
