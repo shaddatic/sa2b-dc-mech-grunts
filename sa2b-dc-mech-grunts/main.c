@@ -69,9 +69,6 @@ Init(const char* path, const HelperFunctions* pHelpFuncs)
     WriteCall(0x007492DA, __SE_Rand); // SoundSwitch 1
     WriteCall(0x007493EE, __SE_Rand); // SoundSwitch 2
 
-    if (EWalkSw)
-        WriteCall(0x0073C69F, __SE_Rand); // Eggman
-
     ConfigClose(p_config);
 }
 
