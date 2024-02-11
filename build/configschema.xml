@@ -2,11 +2,20 @@
 <ConfigSchema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonicretro.org">
 	<Groups>
 		<Group name="main" display="Settings">
-			<Property name="twalk_sw" display="Use Tails's Alt. Grunt" type="eBOOL" defaultvalue="1">
-				<HelpText>Restores Tails's alt jump grunt that was only played in SA2DC!</HelpText>
+			<Property name="twalk_sw" display="Tornado Walker" type="eBOOL" defaultvalue="1">
+				<HelpText>Restores Tails's alternate jump grunt from the Dreamcast version.</HelpText>
 			</Property>
-			<Property name="ewalk_sw" display="Use Eggman's Alt. Grunt" type="eBOOL" defaultvalue="1">
-				<HelpText>Restores Eggman's alt jump grunt that was only played in the SA2 prototype! Disable this if you want it like the DC release.</HelpText>
+			<Property name="ewalk_sw" display="Egg Walker" type="eBOOL" defaultvalue="1">
+				<HelpText>Restores Eggman's alternate jump grunt from the Dreamcast version.</HelpText>
+			</Property>
+			<Property name="cwalk_sw" display="Chao Walker" type="eBOOL" defaultvalue="1">
+				<HelpText>Restores the Chao Walker's alternate jump grunt from the Dreamcast version.</HelpText>
+			</Property>
+			<Property name="dwalk_sw" display="Dark Chao/Big Walker" type="eBOOL" defaultvalue="1">
+				<HelpText>Restores Big's alternate jump grunt from the Dreamcast version, or the completely unheard Dark Chao Walker's alternate jump grunt.</HelpText>
+			</Property>
+			<Property name="random" display="Switch Randomly (Legacy)" type="eBOOL" defaultvalue="0">
+				<HelpText>Older versions of this mod naively switched the voice line randomly. In reality, which grunt plays is based on your speed. This setting restores the old, random behavior.</HelpText>
 			</Property>
 		</Group>
 	</Groups>
