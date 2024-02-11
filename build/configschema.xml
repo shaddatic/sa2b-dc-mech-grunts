@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ConfigSchema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sonicretro.org">
+	<Groups>
+		<Group name="main" display="Settings">
+			<Property name="twalk_sw" display="Use Tails's Alt. Grunt" type="eBOOL" defaultvalue="1">
+				<HelpText>Restores Tails's alt jump grunt that was only played in SA2DC!</HelpText>
+			</Property>
+			<Property name="ewalk_sw" display="Use Eggman's Alt. Grunt" type="eBOOL" defaultvalue="1">
+				<HelpText>Restores Eggman's alt jump grunt that was only played in the SA2 prototype! Disable this if you want it like the DC release.</HelpText>
+			</Property>
+		</Group>
+	</Groups>
+	<Enums>
+		<Enum name="eBOOL">
+			<EnumMember name="1" display="Enabled"></EnumMember>
+			<EnumMember name="0" display="Off/Disabled"></EnumMember>
+		</Enum>
+	</Enums>
+</ConfigSchema>
